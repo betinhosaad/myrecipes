@@ -21,7 +21,12 @@ ActiveRecord::Schema.define(version: 20151124020632) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.integer "chef_id"
+    t.string   "name"
+    t.text     "summary"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "chef_id"
   end
 
 end
