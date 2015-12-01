@@ -1,17 +1,22 @@
-<%= render 'shared/page_title', title: "All Recipes" %>
+<%= render 'shared/page_title', title: @chef.chefname %>
 
+<div class="row">
+  <div class="col-md-4 center">
+    <%= gravatar_for @chef, size = 200 %>
+  </div>
+  <div class="col-md-8 pull-left">
+    <h3><%= @chef.email %></h3>
+    <span>Created at: <%= @chef.created_at.strftime("%d/%m/%Y") %></span>
+  </div>
+</div>
+<hr />
+<h1><span class="label label-default"><%= @chef.chefname %>'s recipes</span></h1>
 <%= will_paginate @recipes %>
-
 <% @recipes.each do |recipe| %>
   <div class="row">
-    
-    <div class="col-md-2">
-      <%= link_to chef_path(recipe.chef) do %>
-      <section class="chef_info center">
-        <%= gravatar_for recipe.chef, size = 100 %>
-        <h5> Chef name: <%= recipe.chef.chefname %></h5>
-      </section>
-      <% end %>
+    <div class="col-md-offset-2"></div>
+    <div class="col-md-3 center">
+      <%= image_tag(recipe.picture.url, size: "250x150", class: "gravatar") if recipe.picture? %>
     </div>
     
     <div class="col-md-7 well">
@@ -31,12 +36,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-3 center">
-      <%= image_tag(recipe.picture.url, size: "250x150", class: "gravatar") if recipe.picture? %>
-    </div>
-    
+
   </div>
   <hr />
 <% end %>
-
-<%= will_paginate @recipes %>

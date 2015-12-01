@@ -6,4 +6,12 @@ module ApplicationHelper
     image_tag(gravatar_url, alt: chef.chefname, class: "gravatar")
   end
   
+  def current_user
+    @current_user ||= Chef.find(session[:chef_id]) if session[:chef_id]
+  end
+  
+  def logged_in?
+    !!current_user
+  end
+  
 end

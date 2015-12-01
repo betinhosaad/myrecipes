@@ -1,14 +1,27 @@
 <header class="navbar navbar-fixed-top navbar-default">
   <div class="container">
-    <%= link_to "myRecipes", root_path , class: "btn btn-lg btn-success", id:"logo" %>
-    <div class="nav_item">
-      <%= link_to "link 1", "", class: "btn btn-default btn-warning" %> 
-    </div>
-          <div class="nav_item">
-      <%= link_to "link 2", "", class: "btn btn-default btn-warning" %> 
-    </div>
-          <div class="nav_item">
-      <%= link_to "New Recipe", new_recipe_path , class: "btn btn-default btn-warning" %> 
-    </div>
+    <%= link_to "iNutree", root_path , class: "btn btn-lg btn-success", id:"logo" %>
+    <% if logged_in? %>
+      <div class="nav_item">
+        <%= link_to "New Recipe", new_recipe_path, class: "btn btn-default btn-warning" %> 
+      </div>
+      <div class="nav_item dropdown ">
+        <button class="btn btn-default btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          <%= current_user.chefname %>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+          <li><%= link_to "Edit Profile", edit_chef_path(current_user) %></li>
+          <li><%= link_to "View Profile", chef_path(current_user) %></li>
+        </ul>
+      </div>
+      <div class="nav_item pull-right">
+        <%= link_to "Log out", logout_path, class: "btn btn-default btn-danger" %> 
+      </div>
+    <% else %>
+      <div class="nav_item pull-right">
+        <%= link_to "Log in", login_path, class: "btn btn-default btn-success" %> 
+      </div>
+    <% end %>
   </div>
 </header>
