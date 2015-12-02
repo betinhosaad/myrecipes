@@ -9,4 +9,18 @@
   </li>
 </ul>
 
-<%= will_paginate @recipes %>
+<%= will_paginate @chefs %>
+
+<% @chefs.each do |chef| %>
+<hr />
+<div class="row">
+  <div class="col-md-4 center">
+    <%= gravatar_for chef, size = 200 %>
+  </div>
+  <div class="col-md-8 pull-left">
+    <h3><%= chef.email %></h3>
+    <span>Created at: <%= chef.created_at.strftime("%d/%m/%Y") %></span>
+  </div>
+</div>
+
+<% end %>

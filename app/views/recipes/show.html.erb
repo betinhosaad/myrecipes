@@ -19,6 +19,8 @@
         <%= image_tag(@recipe.picture.url, class: "gravatar", size: "350x250") if @recipe.picture? %>
       </div>
     <div class="well">
+      <p><%= render @recipe.styles %></p>
+      <p><%= render @recipe.ingredients %></p>
       <p>
         <strong>Steps:</strong>
       </p>
